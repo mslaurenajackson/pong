@@ -189,12 +189,15 @@ class Menu:
                     draw_game = Draw(game_defaults, pong_ball, pong_paddles)
                     run = True
                     while run:
+                        # Handles the user closing the game 
+                        # Use a for loop to loop through pygame's events and the .get() method to get all of the events
+                        # Add a conditional to get the .QUIT event
+                        # if a user clicks x the window closes and run is now False
                         for event in pygame.event.get():
                             if event.type == pygame.QUIT:
                                 pygame.quit()
                                 sys.exit()
-                                run = False
-                        
+                                        
                         game_defaults.clock.tick(60)  # 60 frames per second
                         game_defaults.window.fill(game_defaults.window_color)
                         pong_ball.ball_movement(game_defaults)
@@ -206,7 +209,6 @@ class Menu:
                         draw_game.draw_all(game_defaults, pong_ball, pong_paddles)
                         
                         pygame.display.update()
-                    pygame.quit()
                 elif choice == 2:
                     print("Goodbye!")
                     sys.exit()
