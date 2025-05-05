@@ -1,3 +1,4 @@
+# Pong game OOP solution
 import pygame  # imports pygame used terminal pip to install
 import sys
 
@@ -190,6 +191,8 @@ class Menu:
                     while run:
                         for event in pygame.event.get():
                             if event.type == pygame.QUIT:
+                                pygame.quit()
+                                sys.exit()
                                 run = False
                         
                         game_defaults.clock.tick(60)  # 60 frames per second
