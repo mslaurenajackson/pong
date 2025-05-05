@@ -1,7 +1,10 @@
 import pygame  # imports pygame used terminal pip to install
 import sys
 
-def main_game():
+# Simple solution
+
+
+def play_game():
     pygame.init()
     WIDTH, HEIGHT = 1000, 600
     window = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -71,9 +74,15 @@ def main_game():
                 ball_vel_x *= -1
 
         # draw everything
-        pygame.draw.circle(window, WHITE, (int(ball_x), int(ball_y)), radius)  # draw ball
-        pygame.draw.rect(window, PINK, (left_paddle_x, left_paddle_y, paddle_width, paddle_height))
-        pygame.draw.rect(window, PINK, (right_paddle_x, right_paddle_y, paddle_width, paddle_height))
+        pygame.draw.circle(
+            window, WHITE, (int(ball_x), int(ball_y)), radius
+        )  # draw ball
+        pygame.draw.rect(
+            window, PINK, (left_paddle_x, left_paddle_y, paddle_width, paddle_height)
+        )
+        pygame.draw.rect(
+            window, PINK, (right_paddle_x, right_paddle_y, paddle_width, paddle_height)
+        )
 
         pygame.display.update()
 
@@ -83,24 +92,42 @@ def main_game():
 # OOP menu
 class Menu:
     def __init__(self):
-        self.show_menu()
+        # If the constructor doesn't need to do anything
+        pass  # Do nothing; still valid code
 
-print("--- Pong Main Menu ---")
-print("1. Play Game")
-print("2. Exit Game")
-print("3. Restart Game")
+    # This is one option
+    def show_menu():
+        print("--- Pong Main Menu ---")
+        print("1. Play Game")
+        print("2. Exit Game")
+        print("3. Restart Game")
 
-try:
-    choice = int(input("Please enter your choice: "))
-    if choice == 1:
-        main_game()
-    elif choice == 2:
-        print("Goodbye!")
-        sys.exit()
-    elif choice == 3:
-        print("Restarting Game...")
-        main_game()
-    else:
-        print("Invalid choice")
-except ValueError:
-    print("Please enter a valid number")
+    def game_start():
+        while True:
+            choice = int(input("Please enter your choice: "))
+            try:
+                if choice == 1:
+                    play_game()
+                    break
+                elif choice == 2:
+                    print("Goodbye!")
+                    sys.exit()
+                    break
+                elif choice == 3:
+                    print("Restarting Game...")
+                    main_game()
+                    break
+                else:
+                    print("Invalid choice")
+            except ValueError:
+                print("Please enter a valid number")
+
+
+def main_game():
+    main_menu = Menu
+    main_menu.show_menu()
+    main_menu.game_start()
+
+
+if __name__ == "__main__":
+    main_game()
